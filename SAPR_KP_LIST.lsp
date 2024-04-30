@@ -48,13 +48,13 @@
           
     d (caar d_Lb)
     views (list "m" "main" "s" "side")
-    ui_base "\n Base Point: "
-    ui_view "\n View [Main / Side]: "
-    ui_dia "\n Thread diameter: "
-    ui_unrec "\n The value is not recommended!"
-    ui_len "\n Length of bolt"
-    ui_ang "\n Slewing angle, degrees: "
-    ui_dim "\n Measure (Yes/No): "
+    ui_base "\n Базова точка: "
+    ui_view "\n Вид [Головний / Боковий]: "
+    ui_dia "\n Діаметр різьби: "
+    ui_unrec "\n Значення не рекомендується!"
+    ui_len "\n Довжина болта"
+    ui_ang "\n Кут повороту, градуси: "
+    ui_dim "\n Вимірювати (Так/Ні): "
     L_d nil
     L_ds ""
     a_rot 0.0
@@ -172,10 +172,10 @@
   (setvar "aperture" 5)
   (setvar "ltscale" 2)
   (setq 
-    ui_lb "\n Enter the name of the main lines layer"
-	  ui_lax "\n Enter the name of the axis line layer"
-	  ui_ltb "\n Enter the name of the fine line layer"
-	  ui_ldm "\n Enter the name of the dimensional lines layer"
+    ui_lb "\n Введіть назву шару основних ліній"
+	  ui_lax "\n Введіть назву шару осьових ліній"
+	  ui_ltb "\n Введіть назву шару тонких ліній"
+	  ui_ldm "\n Введіть назву шару розмірних ліній"
   )
   (setq 
     layer_base
@@ -198,28 +198,28 @@
  			(+ (/ (nth 1 other) 2.0) (cadr pd)))	
  		pd2 (list (car pd)
  			(+ (- (/ (nth 1 other) 2.0)) (cadr pd)))
-; 		pd3 (list (+ (- (- (nth 2 other)) 1(car pd))
-; 			(+ (/ (nth 1 other) 2.0) (cadr pd))) 
-; 		pd4 (list (+ (- (- (nth 2 other)) 1(car pd))
-; 			(+ (- (/ (nth 1 other) 2.0)) (cadr pd)))
-; 		pd5 (list (+ (+ (- (nth 2 other)(nth 7 other)) (car pd)) 
-; 			(cadr pd))	
-; 		pd6 (list (+ (+ (- (nth 2 other)) (nth 7 other)(car pd)
-; 			(+ (/ (nth 5 other) 2.0(cadr pd)))
-; 		pd7 (list (+ (+ (- (nth 2 other)) (nth 7 other)(car pd))
-; 			(+ (- (/ (nth 5 other) 2.0)) (cadr pd)))
-; 		pd8 (list (+ (- (nth 2 other)) (car pd))
-; 			(cadr pd))
-; 		pd9 (list (+ (+ (+ (- (nth 2 other)(nth 7 other)) (/ (nth 7 req_par 2.0)(car pd))
-; 			(+ (/ (nth 5 other) 2.0) (cadr pd)))
-; 		pd10 (list (+ (+ (+ (- (nth 2 other)(nth 7 other)) (/ (nth 7 req_par 2.0)(car pd)
-; 			(+ (- (/ (nth 5 other) 2.0)(cadr pd)))
-; 		pd11 (list (+ (+ (+ (- (nth 2 other)) (nth 7 other)(nth 7 req_par)) (car pd))
-; 			(cadr pd))
-; 		pd12 (list (+ (+ (+ (- (nth 2 other)) (nth 7 other)(nth 7 req_par)) (car pd))
-; 			(+ (/ (nth 9 other) 2.0) (cadr pd)))
-; 		pd13 (list (+ (+ (+ (- (nth 2 other)) (nth 7 other)(nth 7 req_par)) (car pd))
-; 			(+ (- (/ (nth 9 other) 2.0)(cadr pd)))
+ 		pd3 (list (+ (- (- (nth 2 other)) 1) (car pd))
+ 			(+ (/ (nth 1 other) 2.0) (cadr pd))) 
+ 		pd4 (list (+ (- (- (nth 2 other)) 1) (car pd))
+ 			(+ (- (/ (nth 1 other) 2.0)) (cadr pd)))
+ 		pd5 (list (+ (+ (- (nth 2 other)) (nth 7 other)) (car pd)) 
+ 			(cadr pd))	
+ 		pd6 (list (+ (+ (- (nth 2 other)) (nth 7 other)) (car pd))
+ 			(+ (/ (nth 5 other) 2.0) (cadr pd)))
+ 		pd7 (list (+ (+ (- (nth 2 other)) (nth 7 other)) (car pd))
+ 			(+ (- (/ (nth 5 other) 2.0)) (cadr pd)))
+ 		pd8 (list (+ (- (nth 2 other)) (car pd))
+ 			(cadr pd))
+ 		pd9 (list (+ (+ (+ (- (nth 2 other)) (nth 7 other)) (/ (nth 7 req_par) 2.0)) (car pd))
+ 			(+ (/ (nth 5 other) 2.0) (cadr pd)))
+ 		pd10 (list (+ (+ (+ (- (nth 2 other)) (nth 7 other)) (/ (nth 7 req_par) 2.0)) (car pd))
+ 			(+ (- (/ (nth 5 other) 2.0)) (cadr pd)))
+ 		pd11 (list (+ (+ (+ (- (nth 2 other)) (nth 7 other)) (nth 7 req_par)) (car pd))
+ 			(cadr pd))
+ 		pd12 (list (+ (+ (+ (- (nth 2 other)) (nth 7 other)) (nth 7 req_par)) (car pd))
+ 			(+ (/ (nth 9 other) 2.0) (cadr pd)))
+ 		pd13 (list (+ (+ (+ (- (nth 2 other)) (nth 7 other)) (nth 7 req_par)) (car pd))
+ 			(+ (- (/ (nth 9 other) 2.0)) (cadr pd)))
 ; 		pd14 (list (+ (- (+ (+ (- (nth 2 other)(nth 7 other)) (nth 7 req_par)(- (/ (nth 0 other) 2.0) (/ (nth 9 other) 2.0))) (car pd))
 ; 			(+ (/ (nth 0 other) 2.0(cadr pd)))
 		
@@ -265,13 +265,13 @@
  	(setq cside (ssadd))
  	(command "layer" "set" layer_base "")
  	(command "line" pd1 pd2 "")
-; 	(command "line" pd1 pd3 "")
-; 	(command "line" pd2 pd4 "")
-; 	(command "line" pd7 pd6 "")
-; 	(command "arc" pd6 pd8 pd7)
-; 	(command "line" pd9 pd6 "")
-; 	(command "line" pd10 pd7 "")
-; 	(command "line" pd12 pd13 "")
+ 	(command "line" pd1 pd3 "")
+ 	(command "line" pd2 pd4 "")
+ 	(command "line" pd7 pd6 "")
+ 	(command "arc" pd6 pd8 pd7)
+ 	(command "line" pd9 pd6 "")
+ 	(command "line" pd10 pd7 "")
+ 	(command "line" pd12 pd13 "")
 ; 	(command "line" pd12 pd14 "")
 ; 	(command "line" pd13 pd15 "")
 ; 	(command "line" pd14 pd15 "")
