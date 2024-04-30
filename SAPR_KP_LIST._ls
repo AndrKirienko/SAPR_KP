@@ -97,12 +97,12 @@
           )
         )
       )
-      
+
       (setq L (getreal
         (strcat ui_len
           " <"
           (substr L_ds 1 (- (strlen L_ds) 1))
-          ">: "))
+          ">: ")))
       )
     )
   )
@@ -122,11 +122,11 @@
 
   (setq
     req_par (list (car base_point)
-    (cadr base_point)
+    (cadr base_point))
     view
     other
     a_rot
-    putdim)
+    putdim
   )
 
   (if (or (= view "m") (= view "main"))
@@ -135,6 +135,7 @@
           (cdr other))
     )
   )
+
   (append req_par)
 )
 
@@ -199,7 +200,7 @@
  		pd2 (list (car pd)
  			(+ (- (/ (nth 1 other) 2.0)) (cadr pd)))
 ; 		pd3 (list (+ (- (- (nth 2 other)) 1(car pd))
-; 			(+ (/ (nth 1 other) 2.0) (cadr pd))) 
+; 			(+ (/ (nth 1 other2.0) (cadr pd))) 
 ; 		pd4 (list (+ (- (- (nth 2 other)) 1(car pd))
 ; 			(+ (- (/ (nth 1 other) 2.0)) (cadr pd)))
 ; 		pd5 (list (+ (+ (- (nth 2 other)(nth 7 other)) (car pd)) 
@@ -211,28 +212,28 @@
 ; 		pd8 (list (+ (- (nth 2 other)) (car pd))
 ; 			(cadr pd))
 ; 		pd9 (list (+ (+ (+ (- (nth 2 other)(nth 7 other)) (/ (nth 7 req_par 2.0)(car pd))
-; 			(+ (/ (nth 5 other) 2.0) (cadr pd)))
+; 			(+ (/ (nth 5 other2.0) (cadr pd)))
 ; 		pd10 (list (+ (+ (+ (- (nth 2 other)(nth 7 other)) (/ (nth 7 req_par 2.0)(car pd)
-; 			(+ (- (/ (nth 5 other) 2.0)(cadr pd)))
+; 			(+ (- (/ (nth 5 other2.0)(cadr pd)))
 ; 		pd11 (list (+ (+ (+ (- (nth 2 other)) (nth 7 other)(nth 7 req_par)) (car pd))
 ; 			(cadr pd))
 ; 		pd12 (list (+ (+ (+ (- (nth 2 other)) (nth 7 other)(nth 7 req_par)) (car pd))
-; 			(+ (/ (nth 9 other) 2.0) (cadr pd)))
+; 			(+ (/ (nth 9 other) 2.0(cadr pd)))
 ; 		pd13 (list (+ (+ (+ (- (nth 2 other)) (nth 7 other)(nth 7 req_par)) (car pd))
-; 			(+ (- (/ (nth 9 other) 2.0)(cadr pd)))
-; 		pd14 (list (+ (- (+ (+ (- (nth 2 other)(nth 7 other)) (nth 7 req_par)(- (/ (nth 0 other) 2.0) (/ (nth 9 other) 2.0))) (car pd))
+; 			(+ (- (/ (nth 9 other2.0)(cadr pd)))
+; 		pd14 (list (+ (- (+ (+ (- (nth 2 other)(nth 7 other)) (nth 7 req_par)(- (/ (nth 0 other2.0) (/ (nth 9 other2.0))) (car pd))
 ; 			(+ (/ (nth 0 other) 2.0(cadr pd)))
 		
 ; 		pd15 (list (+ (- (+ (+ (- (nth 2 other)(nth 7 other)) (nth 7 req_par)(- (- (/ (nth 9 other) 2.0)) (- (/ (nth 0 other) 2.0))(car pd))
 ; 			(+ (- (/ (nth 0 other) 2.0)) (cadr pd)))
 ; 		pd16 (list (+ (+ (+ (- (nth 2 other)(nth 7 other)) (nth 7 req_par)(car pd))
-; 			(+ (/ (nth 0 other) 2.0) (cadr pd)))
+; 			(+ (/ (nth 0 other2.0) (cadr pd)))
 ; 		pd17 (list (+ (+ (+ (- (nth 2 other)(nth 7 other)) (nth 7 req_par)(car pd)
-; 			(+ (- (/ (nth 0 other) 2.0)(cadr pd)))
+; 			(+ (- (/ (nth 0 other2.0)(cadr pd)))
 ; 		pd18 (list (+ (- (+ (+ (- (nth 2 other)(nth 7 other)) (nth 7 req_par)(nth 4 other)) (car pd)) 
-; 			(+ (/ (nth 0 other) 2.0) (cadr pd)))
+; 			(+ (/ (nth 0 other2.0) (cadr pd)))
 ; 		pd19 (list (+ (- (+ (+ (- (nth 2 other)) (nth 7 other)(nth 7 req_par)) (nth 4 other)(car pd)
-; 			(+ (- (/ (nth 0 other) 2.0)(cadr pd)))
+; 			(+ (- (/ (nth 0 other2.0)(cadr pd)))
 
 ; 		pd22 (list (+ (- (+ (+ (- (nth 2 other)(nth 7 other)) (nth 7 req_par)(nth 4 other)) (car pd))
 ; 			(+ (/ (nth 3 other) 2.0(cadr pd)))
@@ -246,17 +247,17 @@
 ; 		pd26(list  (+ (- (+ (+ (- (nth 2 other)) (nth 7 other)(nth 7 req_par)) (nth 4 other)(car pd))
 ; 			(+ (+ (/ (nth 3 other) 2.0(nth 8 other)) (cadr pd)))
 ; 		pd27(list  (+ (- (- (+ (+ (- (nth 2 other)(nth 7 other)) (nth 7 req_par)(nth 4 other)) (nth 8 other)(car pd))
-; 			(+ (/ (nth 3 other) 2.0) (cadr pd)))
+; 			(+ (/ (nth 3 other2.0) (cadr pd)))
 ; 		pd28(list (+ (- (- (+ (+ (- (nth 2 other)) (nth 7 other)(nth 7 req_par)) (nth 4 other)(nth 8 other)) (car pd))
-; 			(+ (- (/ (nth 3 other) 2.0)(cadr pd)))
+; 			(+ (- (/ (nth 3 other2.0)(cadr pd)))
 ; 		pd29(list (+ (- (+ (+ (- (nth 2 other)) (nth 7 other)(nth 7 req_par)) (nth 4 other)(car pd))
-; 			(+ (- (- (/ (nth 3 other) 2.0)(nth 8 other)) (cadr pd)))
+; 			(+ (- (- (/ (nth 3 other2.0)(nth 8 other)) (cadr pd)))
 ; 		pd30(list (+ (- (- (+ (+ (- (nth 2 other)) (nth 7 other)(nth 7 req_par)) (nth 4 other)(/ (nth 8 other) 2.0)) (car pd))
 ; 			(+ (/ (nth 3 other) 2.0(cadr pd)))
-; 		pd31(list (+ (- (- (+ (+ (- (nth 2 other)(nth 7 other)) (nth 7 req_par)(nth 4 other)) (/ (nth 8 other) 2.0)(car pd))
+; 		pd31(list (+ (- (- (+ (+ (- (nth 2 other)(nth 7 other)) (nth 7 req_par)(nth 4 other)) (/ (nth 8 other2.0)(car pd))
 ; 			(+ (- (/ (nth 3 other) 2.0)) (cadr pd)))
 ; 		pd32(list (+ (+ (- (nth 2 other)(nth 7 other)) (car pd))
-; 			(+ (- (/ (nth 0 other) 2.0)(cadr pd)))
+; 			(+ (- (/ (nth 0 other2.0)(cadr pd)))
 ;     ;pzs1(list (+ (- (- (- (+ (+ (- (nth 2 other)) (nth 7 other)(nth 7 req_par)) (nth 4 other)(/ (nth 8 other) 2.0) 2.0)) (car pd))
 ;      ; )
 		
@@ -298,8 +299,8 @@
     (plot_side plot_data)
     (plot_main plot_data)
   )
-  (setvar "cmdecho" 1)
-  (setvar "lwdisplay" 1)
+    (setvar "cmdecho" 1)
+    (setvar "lwdisplay" 1)
 )
 
 

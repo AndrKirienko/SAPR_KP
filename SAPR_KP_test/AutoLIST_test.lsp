@@ -52,6 +52,7 @@ other ; список параметрів залежних тільки від d
 '(42.0 65.0 4.50 3.00 26.0 32.0 1.20)
 '(48.0 75.0 5.00 3.00 30.0 38.0 1.60))
 L_all (list
+
 8.0 10.0 12.0 14.0 16.0 18.0 20.0 22.0
 25.0 28.0 30.0 32.0 35.0 38.0 40.0 45.0
 50.0 55.0 60.0 65.0 70.0 75.0 80.0 85.0
@@ -99,6 +100,7 @@ d_all (list
 d_unrec (list 14.0 18.0 22.0 27.0)
 base_point (list 0.0 0.0)
 view "M"
+
 d (caar d_Lb)
 views (list "m" "main" "s" "side")
 ui_base "\nБазовая точка: "
@@ -146,6 +148,7 @@ runout "n"
 ; дозволених значень L для введеного значення d
 (foreach Li L_all
 (if (and (>= Li (caar lims))
+
 (<= Li (cadr (last lims))))
 (progn
 (setq L_d (append L_d (list Li)))
@@ -195,6 +198,7 @@ runout "n"
 (setq a_rot (getreal ui_ang))
 )
 ; простановка розмірів
+
 (setq putdim (strcase (getstring ui_dim) T))
 (while (= (member putdim yn_list) nil)
 (prompt ui_err)
@@ -246,6 +250,7 @@ def_lname
 (setvar "osmode" 0)
 (setvar "dimtoh" 1)
 (setvar "dimexo" 0)
+
 (setvar "aperture" 5)
 (setvar "ltscale" 2)
 (setq ui_lb "\nВведите имя слоя основных линий"
