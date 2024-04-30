@@ -268,6 +268,21 @@
         (+ (- (/ (nth 0 other) 2.0)) (cadr pd)))
     pd35(list (+ (+ (+ (- (nth 2 other)) (nth 7 other)) (nth 6 other)) (car pd)) 
         (+ (/ (nth 0 other) 2.0) (cadr pd)))
+    pd36(list (+ (- (+ (+ (- (nth 2 other)) (nth 7 other)) (nth 6 other)) (- (/ (nth 5 other) 2.0) (/ (nth 0 other) 2.0))) (car pd))
+        (+ (/ (nth 5 other) 2.0) (cadr pd)))
+    pd37(list (+ (+ (+ (- (nth 2 other)) (nth 7 other)) (nth 6 other)) (- (/ (nth 0 other) 2.0) (/ (nth 3 other) 2.0)) (car pd))
+        (+ (/ (nth 3 other) 2.0) (cadr pd)))
+    pd38(list (+ (+ (+ (+ (- (nth 2 other)) (nth 7 other)) (nth 6 other)) (- (/ (nth 0 other) 2.0) (/ (nth 3 other) 2.0)) (nth 8 other)) (car pd))
+        (+ (/ (nth 3 other) 2.0) (cadr pd)))
+    pd39(list (+ (+ (+ (+ (- (nth 2 other)) (nth 7 other)) (nth 6 other)) (- (/ (nth 0 other) 2.0) (/ (nth 3 other) 2.0)) 0.01) (car pd))
+        (+ (/ (nth 3 other) 2.0) (cadr pd)))
+    pd40(list (+ (- (+ (+ (- (nth 2 other)) (nth 7 other)) (nth 6 other)) (- (- (/ (nth 0 other) 2.0)) (- (/ (nth 5 other) 2.0)))) (car pd))
+        (+ (- (/ (nth 5 other) 2.0)) (cadr pd)))
+    pd41(list (+ (+ (+ (+ (- (nth 2 other)) (nth 7 other)) (nth 6 other)) (- (- (/ (nth 3 other) 2.0)) (- (/ (nth 0 other) 2.0)))) (car pd))
+        (+ (- (/ (nth 3 other) 2.0)) (cadr pd)))
+    pd42(list (+ (- (+ (+ (- (nth 2 other)) (nth 7 other)) (nth 6 other)) (- (- (/ (nth 0 other) 2.0)) (- (/ (nth 5 other) 2.0)))) (car pd))
+        (cadr pd))
+         
          
     
 		
@@ -298,6 +313,18 @@
  	(command "zoom" "w" pzs1 pzs2)
  	(command "trim" "o" "q" "" pd30 pd31 "")
  	(command "zoom" "p")
+  (command "line" pd37 pd36 "")
+  (command "line" pd41 pd40 "")
+  (command "line" pd36 pd40 "")
+  (command "filletrad" (nth 8 other)) 
+ 	(command "fillet" "trim" "no" pd35 pd38)
+  (command "trim" "o" "q" "" pd9 pd23 pd37 pd10 pd42 "")
+  
+  ;(command "zoom" "w" (list 1.26 1.1) (list 1.6 0.9))
+ ;	(command "trim" "o" "q" "" pd39 "")
+  ;(command "zoom" "p")
+  
+  
   
   (command "layer" "set" layer_thin "")
   (command "line" pd27 pd32 "")
