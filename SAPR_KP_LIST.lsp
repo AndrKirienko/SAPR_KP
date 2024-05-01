@@ -438,7 +438,7 @@
     )
   )
   
-  (if (/= (nth 4 pd) 0.0)
+  (if (/= (nth 4 plot_data) 0.0)
     (command "rotate" cside "" pt1 (nth 4 plot_data))
   )
 
