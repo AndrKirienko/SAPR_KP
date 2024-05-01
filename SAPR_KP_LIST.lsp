@@ -49,12 +49,12 @@
     d (caar d_Lb)
     views (list "m" "main" "s" "side")
     ui_base "\n Базова точка: "
-    ui_view "\n Вид [Головний / Боковий]: "
+    ui_view "\n Вид [Main (Головний) / Side (Збоку)]: "
     ui_dia "\n Діаметр різьби: "
     ui_unrec "\n Значення не рекомендується!"
-    ui_len "\n Довжина болта"
+    ui_len "\n Длина болта"
     ui_ang "\n Кут повороту, градуси: "
-    ui_dim "\n Вимірювати (Так/Ні): "
+    ui_dim "\n Проставити розміри (Yes/No): "
     L_d nil
     L_ds ""
     a_rot 0.0
@@ -172,11 +172,12 @@
   (setvar "aperture" 5)
   (setvar "ltscale" 2)
   (setq 
-    ui_lb "\n Введіть назву шару основних ліній"
-	  ui_lax "\n Введіть назву шару осьових ліній"
-	  ui_ltb "\n Введіть назву шару тонких ліній"
-	  ui_ldm "\n Введіть назву шару розмірних ліній"
-    ui_sup "\n Введіть назву шару додаткових ліній"
+    ui_lb "\n Введіть ім'я шару основних ліній"
+    ui_lax "\n Введіть ім'я шару осьових ліній"
+    ui_ltb "\n Введіть ім'я шару тонких ліній"
+    ui_ldm "\n Введіть ім'я шару розмірних ліній"
+    ui_sup "\n введіть ім'я шару додаткових ліній"
+
   )
   (setq 
     layer_base
@@ -194,6 +195,10 @@
     layer_dims
     (olayer "9" "continuous" "0.15" ui_ldm "dim")
   )
+)
+
+(defun tan (num)
+ (/ (sin num)(cos num))
 )
 
 (defun plot_main (pd)
@@ -274,16 +279,23 @@
         (+ (/ (nth 3 other) 2.0) (cadr pd)))
     pd38(list (+ (+ (+ (+ (- (nth 2 other)) (nth 7 other)) (nth 6 other)) (- (/ (nth 0 other) 2.0) (/ (nth 3 other) 2.0)) (nth 8 other)) (car pd))
         (+ (/ (nth 3 other) 2.0) (cadr pd)))
-    pd39(list (+ (+ (+ (+ (- (nth 2 other)) (nth 7 other)) (nth 6 other)) (- (/ (nth 0 other) 2.0) (/ (nth 3 other) 2.0)) 0.01) (car pd))
-        (+ (/ (nth 3 other) 2.0) (cadr pd)))
     pd40(list (+ (- (+ (+ (- (nth 2 other)) (nth 7 other)) (nth 6 other)) (- (- (/ (nth 0 other) 2.0)) (- (/ (nth 5 other) 2.0)))) (car pd))
         (+ (- (/ (nth 5 other) 2.0)) (cadr pd)))
     pd41(list (+ (+ (+ (+ (- (nth 2 other)) (nth 7 other)) (nth 6 other)) (- (- (/ (nth 3 other) 2.0)) (- (/ (nth 0 other) 2.0)))) (car pd))
         (+ (- (/ (nth 3 other) 2.0)) (cadr pd)))
     pd42(list (+ (- (+ (+ (- (nth 2 other)) (nth 7 other)) (nth 6 other)) (- (- (/ (nth 0 other) 2.0)) (- (/ (nth 5 other) 2.0)))) (car pd))
         (cadr pd))
-         
-         
+    pd43(list  (+ (+ (/ (nth 8 other) (tan (* 0.375 pi))) (+ (+ (- (nth 2 other)) (nth 7 other)) (nth 6 other)) (- (/ (nth 0 other) 2.0) (/ (nth 3 other) 2.0))) (car pd))
+        (+ (/ (nth 3 other) 2.0) (cadr pd)))
+    pd44(list (+ (+ (+ (+ (+ (- (nth 2 other)) (nth 7 other)) (nth 6 other)) (- (- (/ (nth 3 other) 2.0)) (- (/ (nth 0 other) 2.0)))) (nth 8 other)) (car pd))
+        (+ (- (/ (nth 3 other) 2.0)) (cadr pd)))
+    pd45(list (+ (+ (/ (nth 8 other) (tan (* 0.375 pi))) (+ (+ (- (nth 2 other)) (nth 7 other)) (nth 6 other)) (- (/ (nth 0 other) 2.0) (/ (nth 3 other) 2.0))) (car pd))
+         (+ (- (/ (nth 3 other) 2.0)) (cadr pd)))
+    pz1(list (+ (- (- (+ (+ (- (nth 2 other)) (nth 7 other)) (nth 7 req_par)) (nth 4 other)) (nth 8 other)) (car pd))
+       (+ (+ (/ (nth 3 other) 2.0) (nth 8 other)) (cadr pd)))
+    pz2(polar pz1 (/ (* 7 pi) 4) (nth 8 other))
+    pz3(list (+ (- (- (+ (+ (- (nth 2 other)) (nth 7 other)) (nth 7 req_par)) (nth 4 other)) (nth 8 other)) (car pd))
+       (+ (+ (/ (nth 3 other) 2.0) (* (nth 8 other) 4)) (cadr pd)))
     
 		
 	)
@@ -317,12 +329,10 @@
   (command "line" pd41 pd40 "")
   (command "line" pd36 pd40 "")
   (command "filletrad" (nth 8 other)) 
- 	(command "fillet" "trim" "no" pd35 pd38)
-  (command "trim" "o" "q" "" pd9 pd23 pd37 pd10 pd42 "")
-  
-  ;(command "zoom" "w" (list 1.26 1.1) (list 1.6 0.9))
- ;	(command "trim" "o" "q" "" pd39 "")
-  ;(command "zoom" "p")
+ 	(command "fillet" "trim" "T" pd35 pd38)
+  (command "fillet" "trim" "T" pd44 pd34)
+  (command "trim" "o" "q" "" pd9 pd10 pd42 "")
+  (command "line" pd43 pd45 "") 
   
   
   
@@ -332,11 +342,21 @@
   (command "trim" "o" "q" "" pd32 pd33 "")
   
   (command "layer" "set" layer_sup "")
-  (command "ltscale" "0.1")
+  (command "ltscale" "0.6")
   (command "line" pd34 pd35 "")
   (command "line" pd18 pd35 "")
   (command "line" pd19 pd34 "")
   
+  (if (= (substr (nth 5 plot_data) 1 1) "y")
+    (progn
+      (command "layer" "set" layer_dims "")
+      (command "dimtoh" "on")
+      (command "dimscale" "0.1")
+      (command "dimlinear" pd43 pd45 (list 2.0 0.0))
+      (command "dimradius" pz2 pz3)
+      
+    )
+  )
 
 )
 
