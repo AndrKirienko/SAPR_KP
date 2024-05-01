@@ -296,6 +296,11 @@
     pz2(polar pz1 (/ (* 7 pi) 4) (nth 8 other))
     pz3(list (+ (- (- (+ (+ (- (nth 2 other)) (nth 7 other)) (nth 7 req_par)) (nth 4 other)) (nth 8 other)) (car pd))
        (+ (+ (/ (nth 3 other) 2.0) (* (nth 8 other) 4)) (cadr pd)))
+    pz4(list (+ (+ (/ (nth 8 other) (tan (* 0.375 pi))) (+ (+ (- (nth 2 other)) (nth 7 other)) (nth 6 other)) (- (/ (nth 0 other) 2.0) (/ (nth 3 other) 2.0))) (car pd))
+        (+ (+ (/ (nth 3 other) 2.0) (nth 8 other) ) (cadr pd)))
+    pz5(polar pz4 (/ (* 13 pi) 9) (nth 8 other))
+    pz6(list (+ (+ (/ (nth 8 other) (tan (* 0.375 pi))) (+ (+ (- (nth 2 other)) (nth 7 other)) (nth 6 other)) (- (/ (nth 0 other) 2.0) (/ (nth 3 other) 2.0))) (car pd))
+        (+ (+ (/ (nth 3 other) 2.0) (* (nth 8 other) 4) ) (cadr pd)))
     
 		
 	)
@@ -354,6 +359,7 @@
       (command "dimscale" "0.1")
       (command "dimlinear" pd43 pd45 (list 2.0 0.0))
       (command "dimradius" pz2 pz3)
+      (command "dimradius" pz5 pz6)
       
     )
   )
