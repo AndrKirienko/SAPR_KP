@@ -301,8 +301,16 @@
     pz5(polar pz4 (/ (* 13 pi) 9) (nth 8 other))
     pz6(list (+ (+ (/ (nth 8 other) (tan (* 0.375 pi))) (+ (+ (- (nth 2 other)) (nth 7 other)) (nth 6 other)) (- (/ (nth 0 other) 2.0) (/ (nth 3 other) 2.0))) (car pd))
         (+ (+ (/ (nth 3 other) 2.0) (* (nth 8 other) 4) ) (cadr pd)))
-    
-		
+    pzb1(list (+ (car pd37) (* (nth 8 other) 3))
+        (+ (cadr pd37) (* (nth 8 other) 3)))
+    pzb2(list (- (car pd37) (* (nth 8 other) 3))
+    (- (cadr pd37) (* (nth 8 other) 3)))
+    pz7(list (+ (car pd) (* (nth 6 other) 1.25))
+       (cadr pd))
+    pz8(list (car pd7)
+       (- (cadr pd7) (* (nth 6 other) 0.3)))
+		pz9(list (car pd7)
+       (- (cadr pd7) (* (nth 6 other) 0.8)))
 	)
 
  	(setq cside (ssadd))
@@ -356,11 +364,16 @@
     (progn
       (command "layer" "set" layer_dims "")
       (command "dimtoh" "on")
-      (command "dimscale" "0.1")
-      (command "dimlinear" pd43 pd45 (list 2.0 0.0))
+      (command "dimscale" (* (nth 0 other) 0.04))
+      (command "dimlinear" pd43 pd45 pz7)
+      (command "zoom" "w" pd18 pd27)
       (command "dimradius" pz2 pz3)
+      (command "zoom" "p")
+      (command "zoom" "w" pzb1 pzb2)
       (command "dimradius" pz5 pz6)
-      
+      (command "zoom" "p")
+      (command "dimlinear" pd7 pd34 pz8)
+      (command "dimlinear" pd8 pd5 pz9)
     )
   )
 
