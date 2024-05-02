@@ -47,14 +47,14 @@
     view "M"
           
     d (caar d_Lb)
-    views (list "m" "main" "s" "side")
-    ui_base "\n Базова точка: "
-    ui_view "\n Вид [Main (Головний) / Side (Збоку)]: "
-    ui_dia "\n Діаметр різьби: "
-    ui_unrec "\n Значення не рекомендується!"
-    ui_len "\n Длина болта"
-    ui_ang "\n Кут повороту, градуси: "
-    ui_dim "\n Проставити розміри (Yes/No): "
+    views (list "m" "main" "s" "side") 
+ui_base "\n Базова точка: "
+ui_view "\n Вид [Main (Головний) / Side (Збоку)]: "
+ui_dia "\n Діаметр різьби: "
+ui_unrec "\n Значення не рекомендується!"
+ui_len "\n Длина болта"
+ui_ang "\n Кут повороту, градуси: "
+ui_dim "\n Проставити розміри (Yes/No): "
     L_d nil
     L_ds ""
     a_rot 0.0
@@ -172,11 +172,11 @@
   (setvar "aperture" 5)
   (setvar "ltscale" 2)
   (setq 
-    ui_lb "\n Введіть ім'я шару основних ліній"
-    ui_lax "\n Введіть ім'я шару осьових ліній"
-    ui_ltb "\n Введіть ім'я шару тонких ліній"
-    ui_ldm "\n Введіть ім'я шару розмірних ліній"
-    ui_sup "\n введіть ім'я шару додаткових ліній"
+ui_lb "\n Введіть ім'я шару основних ліній"
+ui_lax "\n Введіть ім'я шару осьових ліній"
+ui_ltb "\n Введіть ім'я шару тонких ліній"
+ui_ldm "\n Введіть ім'я шару розмірних ліній"
+ui_sup "\n введіть ім'я шару додаткових ліній"
 
   )
   (setq 
@@ -212,11 +212,13 @@
  		pd4 (list (+ (- (- (nth 2 other)) 1) (car pd))
  		  	(+ (- (/ (nth 1 other) 2.0)) (cadr pd)))
  		pd5 (list (+ (+ (- (nth 2 other)) (nth 7 other)) (car pd)) 
- 		  	(cadr pd))	
+ 		  	(- (cadr pd) 0.1))
+    pd5a1(list (car pd5)
+          (+ (cadr pd) 0.1))
  		pd6 (list (+ (+ (- (nth 2 other)) (nth 7 other)) (car pd))
  		  	(+ (/ (nth 5 other) 2.0) (cadr pd)))
- 		pd7 (list (+ (+ (- (nth 2 other)) (nth 7 other)) (car pd))
- 		  	(+ (- (/ (nth 5 other) 2.0)) (cadr pd)))
+ 		pd7 (list (car pd6)
+ 		  	(- (cadr pd6)))
  		pd8 (list (+ (- (nth 2 other)) (car pd))
  		  	(cadr pd))
  		pd9 (list (+ (+ (+ (- (nth 2 other)) (nth 7 other)) (/ (nth 7 req_par) 2.0)) (car pd))
@@ -338,7 +340,9 @@
   (setq cside (ssadd (entlast) cside))
  	(command "line" pd2 pd4 "")
   (setq cside (ssadd (entlast) cside))
- 	(command "line" pd7 pd6 "")
+ 	(command "line" pd6 pd5 "")
+  (setq cside (ssadd (entlast) cside))
+  (command "line" pd5a1 pd7 "")
   (setq cside (ssadd (entlast) cside))
  	(command "arc" pd6 pd8 pd7)
   (setq cside (ssadd (entlast) cside))
@@ -364,7 +368,7 @@
   (setq cside (ssadd (entlast) cside))
  	(command "line" pd24 pd25 "")
   (setq cside (ssadd (entlast) cside))
- 	(command "trim" "o" "q" "" pd3 pd4 pd5 pd8 pd16 pd17 "")
+ 	(command "trim" "o" "q" "" pd3 pd4 pd5 pd5a1 pd8 pd16 pd17 "")
   (setq cside (ssadd (entlast) cside))
  	(command "filletrad" (nth 8 other)) 
  	(command "fillet" "trim" "no" pd26 pd27)
@@ -442,6 +446,23 @@
     (command "rotate" cside "" pt1 (nth 4 plot_data))
   )
 
+)
+
+(defun plot_side (pd)
+ 	(setq pt1 (list (car pd) (cadr pd))
+         ;pd1((/ (nth 5 other) 2.0))
+         
+         
+  )
+  
+  (setq cside (ssadd))
+  (command "layer" "set" layer_base "")
+  (command "circle" pt1 (/ (nth 5 other) 2.0))
+  
+ ; (if (= (substr (nth 5 plot_data) 1 1) "y")
+   ; (progn
+   ; )
+  ;)
 )
 
 (defun GOST ()
