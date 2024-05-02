@@ -450,15 +450,35 @@ ui_sup "\n введіть ім'я шару додаткових ліній"
 
 (defun plot_side (pd)
  	(setq pt1 (list (car pd) (cadr pd))
-         ;pd1((/ (nth 5 other) 2.0))
-         
+         pd1(list (car pd)
+             (+ (/ (nth 1 other) 2.0) (cadr pd)))
+         pd2(list (+ (/ (nth 5 other) 2.0) (car pd1))
+             (cadr pd1))
+         pd3(list (car pd2)
+            (- (cadr pd2) (nth 1 other)))
+         pd4(list (- (car pd3) (nth 5 other))
+            (cadr pd3))
+         pd5(list (car pd4)
+            (cadr pd1))
+         ptr2x(list (-(car pd2) 0.01)
+              (cadr pd2))
+         ptr2y(list (car pd2)
+              (- (+ (cadr pt1) (/ (nth 1 other) 2.0)) 0.01))
+         ptr3x(list (- (car pd3) 0.01)
+               (cadr pd3))
+         ptr3y(list (car pd3)
+              (+ (cadr pd3) 0.02))
          
   )
   
   (setq cside (ssadd))
   (command "layer" "set" layer_base "")
   (command "circle" pt1 (/ (nth 5 other) 2.0))
+  (command "line" pd2 pd3 pd4 pd5 pd2 "")
+  (command "zoom" "w" (list 2.62 0.47) (list 2.92 -0.47))
+   (command "trim" "o" "q" "" ptr2x ptr2y ptr3x ptr3y "")
   
+
  ; (if (= (substr (nth 5 plot_data) 1 1) "y")
    ; (progn
    ; )
