@@ -184,7 +184,7 @@ ui_sup "\n введіть ім'я шару додаткових ліній"
     (olayer "240" "continuous" "0.30" ui_lb "base")
 
     layer_axial
-    (olayer "9" "center" "0.15" ui_lax "axial")
+    (olayer "140" "center" "0.15" ui_lax "axial")
     
     layer_sup
     (olayer "240" "center" "0.15" ui_sup "supplement")
@@ -328,11 +328,16 @@ ui_sup "\n введіть ім'я шару додаткових ліній"
     pzm1(list (- (car pz14) (* (nth 6 other) 0.5))
          (+ (cadr pz14) (* (nth 5 other) 0.9)))
     pzm2(list (+ (car pd11) (nth 6 other))
-        (- (cadr pd11) (nth 5 other)))       
+        (- (cadr pd11) (nth 5 other)))    
+      pa1(list (+ (car pd11) 0.5)
+      (cadr pd11))         
 	)
 
  	(setq cside (ssadd))
   (command "zoom" "w" pzm1 pzm2)
+  (command "layer" "set" layer_axial "")
+  (command "line" pd8 pa1 "")
+  (setq cside (ssadd (entlast) cside))
  	(command "layer" "set" layer_base "")
  	(command "line" pd1 pd2 "")
   (setq cside (ssadd (entlast) cside))
@@ -499,11 +504,25 @@ ui_sup "\n введіть ім'я шару додаткових ліній"
         pd2x(list (+ (car pd2) 0.005)
              (cadr pd2))
         pd1c(list (+ (car pd) (/ (nth 5 other) 2.0) (nth 1 other))
-             (cadr pd))         
+             (cadr pd)) 
+         
+         pa1x(list (car pd)
+             (+ (cadr pd) (/ (nth 5 other) 2.0) (nth 1 other) ))
+          pa1y(list (car pd)
+             (- (cadr pd) (/ (nth 5 other) 2.0) (nth 1 other) ))
+           pa2x(list (+ (car pd) (/ (nth 5 other) 2.0) (nth 1 other))
+               (cadr pd))
+           pa2y(list (- (car pd) (/ (nth 5 other) 2.0) (nth 1 other))
+               (cadr pd))
   )
   
   (setq cside (ssadd))
   (command "zoom" "w" pwz1 pwz2)
+   (command "layer" "set" layer_axial "")
+   (command "line" pa1x pa1y "")
+   (setq cside (ssadd (entlast) cside))
+    (command "line" pa2x pa2y "")
+   (setq cside (ssadd (entlast) cside))    
   (command "layer" "set" layer_base "")
   (command "circle" pt1 (/ (nth 5 other) 2.0))
   (setq cside (ssadd (entlast) cside))
