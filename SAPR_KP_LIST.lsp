@@ -69,6 +69,7 @@
                     ">: "
             )
           )
+  )
 
   (while (= (member d d_all) nil) 
     (prompt ui_err)
@@ -770,7 +771,7 @@
         pz2   (list (car pd) 
                     (+ (cadr pd) (/ (nth 5 other) 2.0))
               )
-        pz1   (list (car pd)  
+        pz3   (list (+ (car pd) (nth 1 other))
                     (+ (cadr pz2) (nth 1 other))
               )
         pwz1  (list (- (car pd) (/ (nth 5 other) 2.0) (nth 1 other)) 
@@ -828,7 +829,7 @@
       (command "dimscale" (* (nth 0 other) 0.04))
       (command "dimlinear" pd1 pd1b pd1c)
       (setq cside (ssadd (entlast) cside))
-      (command "dimdiameter" pz2 pz1)
+      (command "dimdiameter" pz2 pz3)
       (setq cside (ssadd (entlast) cside))
     )
   )
@@ -848,28 +849,4 @@
   (setvar "cmdecho" 1)
   (setvar "lwdisplay" 1)
 )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
