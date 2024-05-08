@@ -1,4 +1,4 @@
-(setq ui_err  "\nRepeat entry!"
+(setq ui_err  "\n Повторіть введення!"
       yn_list (list "y" "yes" "n" "no")
 )
 
@@ -60,7 +60,15 @@
     (setq view (strcase (getstring ui_view) T))
   )
 
-  (setq d (getreal ui_dia))
+  (setq d (getreal 
+            (strcat ui_dia 
+                    " < "
+                    (apply 'strcat 
+                           (mapcar '(lambda (x) (strcat (rtos x) " ")) d_all)
+                    )
+                    ">: "
+            )
+          )
 
   (while (= (member d d_all) nil) 
     (prompt ui_err)
@@ -98,16 +106,6 @@
       )
       (if (/= (member L L_unrec) nil) 
         (prompt ui_unrec)
-      )
-      ; обчислення b з умов, визначених списком d_Lb
-      (foreach Li lims 
-        (if (and (>= L (car Li)) (<= L (cadr Li))) 
-          (setq b (caddr Li))
-        )
-      )
-      ; обробка випадку відсутності збігу (b=0)
-      (if (zerop b) 
-        (setq b L)
       )
     )
   )
@@ -162,7 +160,7 @@
 (defun tune_env (/ ui_lb ui_lax ui_ltb ui_ldm ui_sup) 
   (command ".erase" "all" "")
   (command "snap" "off")
-  (command "grid" "on")
+  ;(command "grid" "on")
   (setvar "osmode" 0)
   (setvar "dimtoh" 1)
   (setvar "dimexo" 0)
@@ -769,11 +767,11 @@
         pd6   (list (+ (car pd1) (/ (nth 5 other) 2.0)) 
                     (cadr pt1)
               )
-        pz1   (list (+ (car pd) (/ (nth 5 other) 2.0) 1.0) 
-                    (+ (cadr pd) 1.0)
-              )
         pz2   (list (car pd) 
                     (+ (cadr pd) (/ (nth 5 other) 2.0))
+              )
+        pz1   (list (car pd)  
+                    (+ (cadr pz2) (nth 1 other))
               )
         pwz1  (list (- (car pd) (/ (nth 5 other) 2.0) (nth 1 other)) 
                     (+ (cadr pd) (/ (nth 5 other) 2.0) (nth 1 other))
