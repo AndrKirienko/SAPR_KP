@@ -21,10 +21,10 @@
         L_unrec    (list 14.0 18.0 22.0 28.0 36.0 45.0 55.0 70.0)
         d_Lb       (list 
                      '(2.5 (6.0 18.0))
-                     '(3.0 (6.0 60.0))
+                     '(3.0 (8.0 60.0))
                      '(4.0 (8.0 60.0))
                      '(5.0 (12.0 80.0))
-                     '(6.0 (12.0 80.0))
+                     '(6.0 (14.0 80.0))
                      '(8.0 (22.0 80.0))
                      '(10.0 (22.0 80.0))
                      '(12.0 (28.0 80.0))
@@ -38,7 +38,7 @@
         ui_view    "\n Вид [Main (Головний) / Side (Збоку)]: "
         ui_dia     "\n Діаметр різьби: "
         ui_unrec   "\n Значення не рекомендується!"
-        ui_len     "\n Длина болта"
+        ui_len     "\n Довжина гвинта"
         ui_ang     "\n Кут повороту, градуси: "
         ui_dim     "\n Проставити розміри (Yes/No): "
         L_d        nil
@@ -161,7 +161,6 @@
 (defun tune_env (/ ui_lb ui_lax ui_ltb ui_ldm ui_sup) 
   (command ".erase" "all" "")
   (command "snap" "off")
-  ;(command "grid" "on")
   (setvar "osmode" 0)
   (setvar "dimtoh" 1)
   (setvar "dimexo" 0)
@@ -771,7 +770,7 @@
         pz2   (list (car pd) 
                     (+ (cadr pd) (/ (nth 5 other) 2.0))
               )
-        pz3   (list (+ (car pd) (nth 1 other))
+        pz3   (list (+ (car pd) (nth 1 other)) 
                     (+ (cadr pz2) (nth 1 other))
               )
         pwz1  (list (- (car pd) (/ (nth 5 other) 2.0) (nth 1 other)) 
