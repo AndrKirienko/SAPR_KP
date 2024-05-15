@@ -52,6 +52,11 @@
   )
 
   (setq base_point (getpoint ui_base))
+  
+  (while (= base_point nil)
+    (prompt ui_err)
+    (setq base_point (getpoint ui_base))  
+  )
 
   (setq view (strcase (getstring ui_view) T))
 
@@ -838,14 +843,15 @@
   )
 )
 
-(defun GOST () 
+(defun DSTU () 
+  (setvar "cmdecho" 0)
   (tune_env)
   (setq plot_data (user_input))
   (if (= (substr (nth 2 plot_data) 1 1) "s") 
     (plot_side plot_data)
     (plot_main plot_data)
   )
-  (setvar "cmdecho" 1)
   (setvar "lwdisplay" 1)
+  (setvar "cmdecho" 1)
 )
 
