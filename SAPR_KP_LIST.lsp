@@ -22,7 +22,7 @@
         d_Lb       (list 
                      '(2.5 (6.0 18.0))
                      '(3.0 (8.0 60.0))
-                     '(4.0 (8.0 60.0))
+                     '(4.0 (10.0 60.0))
                      '(5.0 (12.0 80.0))
                      '(6.0 (14.0 80.0))
                      '(8.0 (22.0 80.0))
@@ -47,7 +47,6 @@
         putdim     "y"
         req_par    nil
         aux_par    nil
-        runouts    (list "n" "normal" "s" "short")
         runout     "n"
   )
 
@@ -854,4 +853,3 @@
   (setvar "lwdisplay" 1)
   (setvar "cmdecho" 1)
 )
-
